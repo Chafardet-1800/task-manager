@@ -8,7 +8,7 @@ const Navbar = () => {
   const { isSignedIn } = useSession();
 
   return (
-    <div className="bg-gray-800 flex justify-between w-[100%] mx-auto p-5">
+    <div className="bg-transparent fixed top-0 flex justify-between w-[100%] mx-auto p-5">
       <Link
         href="/"
         className="flex items-center gap-1 text-2xl font-bold uppercase"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "./components/navbar";
+import Navbar from "./components/shared/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +29,7 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl="/">
       <html lang="es">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900 text-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-[rgb(13,3,40)] text-white`}
         >
           <Navbar />
 
