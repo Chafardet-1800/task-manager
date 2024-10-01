@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Navbar from "./components/shared/navbar";
+import Navbar from "./shared/navbar";
+import ToasterContext from "./shared/ui/toasterContext";
+import { Theme } from "./shared/providers/themeProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,13 +29,17 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider afterSignOutUrl="/">
-      <html lang="es">
+      <html lang="es" suppressHydrationWarning>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-[rgb(13,3,40)] text-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-[rgb(13,3,40)]`}
         >
-          <Navbar />
+          <Theme>
+            <ToasterContext />
 
-          {children}
+            <Navbar />
+
+            {children}
+          </Theme>
         </body>
       </html>
     </ClerkProvider>
