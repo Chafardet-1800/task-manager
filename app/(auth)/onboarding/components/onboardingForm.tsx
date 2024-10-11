@@ -7,13 +7,8 @@ import toast from "react-hot-toast";
 import CustomInput from "@/app/shared/ui/customInput";
 import CustomButton from "@/app/shared/ui/customButton";
 import { SyncLoader } from "react-spinners";
-import { createNewBoard, createTask } from "@/app/actions/boardActions";
-
-const varianst = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 0 },
-};
+import { createNewBoard, createTask } from "@/app/shared/actions/boardActions";
+import { AnimationsVariants } from "@/app/shared/models/animations";
 
 const OnboardingForm = ({
   user,
@@ -42,7 +37,7 @@ const OnboardingForm = ({
     setIsLoading(true);
     setTimeout(() => {
       router.replace("/taskmanager");
-      toast.success(`Felicidades ${user}! Has creado un nuevo proyecto.`);
+      toast.success(`Felicidades ${user}! Has creado un proyecto.`);
       setIsLoading(false);
     }, 5000);
   };
@@ -57,7 +52,7 @@ const OnboardingForm = ({
       animate="visible"
       exit="exit"
       transition={{ duration: 0.5 }}
-      variants={varianst}
+      variants={AnimationsVariants}
       className="flex flex-col items-center justify-center h-full pt-10 w-[90%] max-w-[1450px] mx-auto text-white"
     >
       {step === 1 && (
@@ -65,7 +60,7 @@ const OnboardingForm = ({
           initial="hidden"
           animate="visible"
           transition={{ duration: 0.5 }}
-          variants={varianst}
+          variants={AnimationsVariants}
           className="w-full text-center"
         >
           <h2 className="mb-10 text-3xl font-bold uppercase">
@@ -106,7 +101,7 @@ const OnboardingForm = ({
           initial="hidden"
           animate="visible"
           transition={{ duration: 0.5 }}
-          variants={varianst}
+          variants={AnimationsVariants}
           className="w-full text-center"
         >
           <h2 className="mb-10 text-3xl font-bold uppercase">

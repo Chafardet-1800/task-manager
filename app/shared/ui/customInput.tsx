@@ -3,7 +3,7 @@ const CustomInput = ({
   placeholder,
   type,
   value,
-  disable,
+  disable = false,
   required,
   fullWidth,
 }: {
@@ -21,7 +21,7 @@ const CustomInput = ({
       type={type}
       placeholder={placeholder}
       disabled={disable}
-      value={value}
+      defaultValue={value}
       required={required}
       className={`
         h-20 bg-transparent border-b text-2xl self-center focus:outline-none

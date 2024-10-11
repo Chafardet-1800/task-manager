@@ -1,7 +1,10 @@
-import { TaskModel } from "@/app/shared/models/types";
+import { deleteTask, editTask } from "@/app/shared/actions/boardActions";
+import { FormInputConfigModel, TaskModel } from "@/app/shared/models/types";
 import CustomButton from "@/app/shared/ui/customButton";
+import Dialog from "@/app/shared/ui/dialog";
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { LuDot } from "react-icons/lu";
 
 const Column = ({
@@ -15,7 +18,62 @@ const Column = ({
 }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  const [taskId, setTaskId] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [isDelete, setIsDelete] = useState(false);
+
+  const [formConfig, setFormConfig] = useState<FormInputConfigModel[]>([]);
+
+  // Funcion para abrir el dialogo
+  const openDialog = (taskId: string, isEdit: boolean) => {
+    if (isEdit) {
+      const value = tasks?.find((task) => task.id === taskId)?.name || "";
+
+      const config = [
+        {
+          name: "task",
+          type: "text",
+          value: value,
+          placeholder: "Nueva tarea",
+          required: true,
+          fullWidth: true,
+          style: "",
+        },
+        {
+          name: "taskId",
+          type: "hidden",
+          value: taskId,
+          placeholder: "",
+          required: true,
+          fullWidth: true,
+          style: "",
+        },
+      ];
+
+      setFormConfig(config);
+      setIsEdit(true);
+    } else {
+      const config = [
+        {
+          name: "taskId",
+          type: "hidden",
+          value: taskId,
+          placeholder: "Nueva tarea",
+          required: true,
+          fullWidth: true,
+          style: "",
+        },
+      ];
+
+      setFormConfig(config);
+      setIsDelete(true);
+    }
+  };
+
+  // Funcion para cerrar el dialogo
+  const closeDialog = (isEdit: boolean) => {
+    isEdit ? setIsEdit(false) : setIsDelete(false);
+  };
 
   return (
     <div className="flex-1">
@@ -60,6 +118,7 @@ const Column = ({
                           icon="edit"
                           size={18}
                           classButton="icon"
+                          onClick={() => openDialog(task.id, true)}
                         />
                         <CustomButton
                           text=""
@@ -68,6 +127,7 @@ const Column = ({
                           icon="delete"
                           size={18}
                           classButton="icon"
+                          onClick={() => openDialog(task.id, false)}
                         />
                       </div>
                     )}
@@ -80,6 +140,33 @@ const Column = ({
           </div>
         )}
       </Droppable>
+
+      {/* Dialog para editar una tarea */}
+      {isEdit && (
+        <Dialog
+          title="¿Quieres editar esta tarea?"
+          formConfig={formConfig}
+          formAction={editTask}
+          cancelText="Cancelar"
+          confirmText="Editar"
+          onCancel={() => closeDialog(true)}
+          onConfirm={() => closeDialog(true)}
+        />
+      )}
+
+      {/* Dialog para elimnar una  tarea */}
+      {isDelete && (
+        <Dialog
+          title="¿Quieres eliminar esta tarea?"
+          formConfig={formConfig}
+          formAction={deleteTask}
+          cancelText="Cancelar"
+          confirmText="Eliminar"
+          classButton="cancel"
+          onCancel={() => closeDialog(false)}
+          onConfirm={() => closeDialog(false)}
+        />
+      )}
     </div>
   );
 };

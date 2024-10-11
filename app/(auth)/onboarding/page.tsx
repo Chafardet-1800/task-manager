@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import OnboardingForm from "./components/onboardingForm";
-import { getBoardId } from "@/app/actions/getBoardId";
+import { getBoardId } from "@/app/shared/actions/getBoardId";
 
 const Onboarding = async () => {
   const user = await currentUser();

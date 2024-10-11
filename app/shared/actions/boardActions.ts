@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/utils/prisma";
 import { auth } from "@clerk/nextjs/server"
+import toast from "react-hot-toast";
 
 const {userId}: {userId: string | null} = auth();
 
@@ -45,7 +46,7 @@ export async function createTask(formData: FormData) {
     const name = formData.get("task") as string;
     const boardId = formData.get("boardId") as string;
 
-    if(!name.trim()) {
+    if(!name.trim() || !boardId.trim()) {
         return;
     };
 
@@ -56,6 +57,52 @@ export async function createTask(formData: FormData) {
             status: "TODO",
         }
     })
+
+    toast.success(`Tarea creada con exito`);
+
+    revalidatePath("");
+
+}
+
+export async function editTask(formData: FormData) {
+
+    const newTask = formData.get("task") as string;
+    const taskId = formData.get("taskId") as string;
+
+    if(!newTask.trim() || !taskId.trim()) {
+        return;
+    };
+
+    await prisma.task.update({
+        where:{
+            id: taskId
+        },
+        data:{
+            name: newTask
+        }
+    })
+
+    toast.success(`Tarea editada con exito`);
+
+    revalidatePath("");
+
+}
+
+export async function deleteTask(formData: FormData) {
+
+    const taskId = formData.get("taskId") as string;
+
+    if(!taskId.trim()) {
+        return;
+    };
+
+    await prisma.task.delete({
+        where:{
+            id: taskId
+        },
+    })
+
+    toast.success(`Tarea eliminada con exito`);
 
     revalidatePath("");
 
