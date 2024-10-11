@@ -84,6 +84,22 @@ const Board: React.FC<{ board: BoardModel | null }> = ({ board }) => {
     )
       return;
 
+    if (
+      destination.droppableId === source.droppableId &&
+      source.index !== destination.index
+    ) {
+      const task = tasks![source.index];
+
+      let updateTask = tasks?.filter((value, index) => index !== source.index);
+
+      if (updateTask?.length) {
+        updateTask.splice(destination.index, 0, task);
+
+        setTasks(updateTask);
+      }
+
+      return;
+    }
     const draggedTask = tasks!.find((task) => task.id === draggableId);
 
     let updateStatus: string;

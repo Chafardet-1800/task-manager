@@ -58,8 +58,6 @@ export async function createTask(formData: FormData) {
         }
     })
 
-    toast.success(`Tarea creada con exito`);
-
     revalidatePath("");
 
 }
@@ -82,8 +80,6 @@ export async function editTask(formData: FormData) {
         }
     })
 
-    toast.success(`Tarea editada con exito`);
-
     revalidatePath("");
 
 }
@@ -101,8 +97,6 @@ export async function deleteTask(formData: FormData) {
             id: taskId
         },
     })
-
-    toast.success(`Tarea eliminada con exito`);
 
     revalidatePath("");
 

@@ -75,6 +75,12 @@ const Column = ({
     isEdit ? setIsEdit(false) : setIsDelete(false);
   };
 
+  // Funcion para finalizar el proceso del dialogo de crear una nueva tarea
+  const submitDialog = (text: string, isEdit: boolean) => {
+    toast.success(`Tarea ${text} con exito`);
+    isEdit ? setIsEdit(false) : setIsDelete(false);
+  };
+
   return (
     <div className="flex-1">
       <div className="flex gap-1 dark:text-white">
@@ -150,7 +156,7 @@ const Column = ({
           cancelText="Cancelar"
           confirmText="Editar"
           onCancel={() => closeDialog(true)}
-          onConfirm={() => closeDialog(true)}
+          onConfirm={() => submitDialog("editada", true)}
         />
       )}
 
@@ -164,7 +170,7 @@ const Column = ({
           confirmText="Eliminar"
           classButton="cancel"
           onCancel={() => closeDialog(false)}
-          onConfirm={() => closeDialog(false)}
+          onConfirm={() => submitDialog("eliminada", false)}
         />
       )}
     </div>

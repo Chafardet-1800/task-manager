@@ -55,10 +55,10 @@ const CustomButton = ({
 
   switch (resolvedTheme) {
     case "light":
-      iconColor = "#111827";
+      iconColor = "#fff";
       break;
     case "dark":
-      iconColor = "#fff";
+      iconColor = "#111827";
       break;
     default:
       break;
