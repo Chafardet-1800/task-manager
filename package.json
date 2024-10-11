@@ -1,6 +1,6 @@
 {
   "name": "task-manager",
-  "version": "0.0.005",
+  "version": "0.0.006",
   "private": true,
   "scripts": {
     "dev": "next dev",

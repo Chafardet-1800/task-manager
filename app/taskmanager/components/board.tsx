@@ -148,9 +148,11 @@ const Board: React.FC<{ board: BoardModel | null }> = ({ board }) => {
   }
 
   return (
-    <div className="h-screen py-10 relative">
+    <div className="h-screen py-10 relative overflow-scroll">
       {/* NOmbre de la tabla */}
-      <h3 className="text-3xl text-center font-bold mb-10">{board?.name}</h3>
+      <h3 className="max-lg:my-10 text-3xl text-center font-bold mb-10">
+        {board?.name}
+      </h3>
 
       {/* Contenedor de las columnas que permite poder arrastrarlas*/}
       <DragDropContext onDragEnd={onDragEnd}>
@@ -180,7 +182,7 @@ const Board: React.FC<{ board: BoardModel | null }> = ({ board }) => {
       </DragDropContext>
 
       {/* Boton para crear una nueva tarea */}
-      <div className="absolute bottom-10 right-10 bg-purple-900 rounded-full p-2">
+      <div className="fixed bottom-10 right-10 bg-purple-900 rounded-full p-2">
         <CustomButton
           icon="add"
           tooltip="Nueva Tarea"

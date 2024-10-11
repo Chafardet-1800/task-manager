@@ -4,19 +4,19 @@ const HomePage = () => {
   return (
     <div className="bg-[url('/images/bg.jpeg')] bg-cover h-[100vh] w-full pt-3 overflow-hidden text-white">
       <div className="flex items-center justify-center h-full pt-10 gap-10 w-[90%] max-w-[1450px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-6 items-center">
+        <div className="grid md:grid-cols-2 gap-6 pt-5 items-center w-full">
           <img
-            className="rounded-xl order-last md:min-w-[800px] min-w-[500px] md:h-[500px] max-sm:px-5"
+            className="rounded-xl order-last md:min-w-[800px] min-w-[500px] md:h-[500px] max-sm:px-5 max-md:mt-5"
             src="/images/landing.png"
             alt="Imagen ejemplo de la pagina"
           />
 
-          <div className="flex flex-col justify-center max-md:items-center max-md:text-center space-y-4  ">
+          <div className="flex flex-col justify-center max-md:items-center max-md:text-center space-y-4 max-md:w-[73%]">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Maneja y vizualiza tus tareas
             </h2>
 
-            <p className="max-w-[500px] md:text-xl text-gray-50">
+            <p className="max-w-[500px] md:text-xl max-lg:px-3 text-gray-50">
               Crea, administra y toma el control de tus proyectos, con estas
               simple pero efectiva herramienta.
             </p>

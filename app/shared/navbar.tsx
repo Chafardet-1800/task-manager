@@ -6,6 +6,9 @@ import { useSession } from "@clerk/nextjs";
 import Link from "next/link";
 import useRouteCheck from "./hooks/useRouteCheck";
 import ThemeSwitcher from "./themeSwicher";
+import { GoTasklist } from "react-icons/go";
+import { FaUserLarge } from "react-icons/fa6";
+import { Tooltip } from "@nextui-org/tooltip";
 
 const Navbar = () => {
   const { isSignedIn } = useSession();
@@ -14,7 +17,7 @@ const Navbar = () => {
   const kanbanRoute = useRouteCheck(["taskmanager"]);
   return (
     <div
-      className={`py-5 bg-transparent fixed top-0 z-10 w-full
+      className={`py-5 max-md:bg-[rgb(13,3,40)] bg-transparent fixed top-0 z-10 w-full
     ${!kanbanRoute || onboardingRoute ? "text-white" : null}
     ${signInPages && "text-gray-800 dark:text-white"}
     `}
@@ -31,20 +34,36 @@ const Navbar = () => {
         <div className="flex items-center gap-5">
           <UserButton />
           {!kanbanRoute && isSignedIn && !onboardingRoute && (
-            <Link
-              href={"/taskmanager"}
-              className="tracking-tight hover:underline"
+            <Tooltip
+              key="gotaskboard"
+              placement={"bottom"}
+              content="Ir a mi proyecto"
+              className="capitalize"
             >
-              Go to my board &#8594;
-            </Link>
+              <Link
+                href={"/taskmanager"}
+                className="tracking-tight hover:underline"
+              >
+                <GoTasklist size={35} />
+              </Link>
+            </Tooltip>
           )}
 
           {kanbanRoute || signInPages ? <ThemeSwitcher /> : null}
         </div>
         {!isSignedIn && !signInPages && (
-          <Link href={"/sign-in"} className="tracking-tight hover:underline">
-            Already a member? Sign In &#8594;
-          </Link>
+          <Tooltip
+            key="gotaskboard"
+            placement={"bottom"}
+            content="Ir a mi proyecto"
+            className="capitalize"
+          >
+            <Link href={"/sign-in"} className="tracking-tight hover:underline">
+              <p className="bg-purple-900 py-2 px-3 rounded-xl">
+                Iniciar Session
+              </p>
+            </Link>
+          </Tooltip>
         )}
       </div>
     </div>
