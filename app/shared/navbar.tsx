@@ -52,18 +52,11 @@ const Navbar = () => {
           {kanbanRoute || signInPages ? <ThemeSwitcher /> : null}
         </div>
         {!isSignedIn && !signInPages && (
-          <Tooltip
-            key="gotaskboard"
-            placement={"bottom"}
-            content="Ir a mi proyecto"
-            className="capitalize"
-          >
-            <Link href={"/sign-in"} className="tracking-tight hover:underline">
-              <p className="bg-purple-900 py-2 px-3 rounded-xl">
-                Iniciar Session
-              </p>
-            </Link>
-          </Tooltip>
+          <Link href={"/sign-in"} className="tracking-tight hover:underline">
+            <p className="bg-purple-900 py-2 px-3 rounded-xl">
+              Iniciar Session
+            </p>
+          </Link>
         )}
       </div>
     </div>

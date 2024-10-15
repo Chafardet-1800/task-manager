@@ -1,4 +1,4 @@
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 import Board from "./components/board";
 import { auth } from "@clerk/nextjs/server";
 

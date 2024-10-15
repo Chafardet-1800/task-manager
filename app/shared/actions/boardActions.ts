@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server"
 import toast from "react-hot-toast";
 

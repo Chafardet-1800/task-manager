@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { getBoardId } from "./shared/actions/getBoardId";
 
 const HomePage = () => {
+  const board = getBoardId();
+
+  console.log(board);
+
   return (
     <div className="bg-[url('/images/bg.jpeg')] bg-cover h-[100vh] w-full pt-3 overflow-hidden text-white">
       <div className="flex items-center justify-center h-full pt-10 gap-10 w-[90%] max-w-[1450px] mx-auto">

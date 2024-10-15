@@ -7,12 +7,12 @@ import ToasterContext from "./shared/ui/toasterContext";
 import { Theme } from "./shared/providers/themeProvider";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "./shared/fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "./shared/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
